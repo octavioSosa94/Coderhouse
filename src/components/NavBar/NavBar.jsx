@@ -12,6 +12,7 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
+import CartWidget from './CartWidget/CartWidget'
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
@@ -92,8 +93,10 @@ export default function NavBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             El mercadito de Octavio
           </Typography>
+          <CartWidget/>
           {auth && (
             <div>
+              
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -103,6 +106,7 @@ export default function NavBar() {
                 color="inherit"
               >
                 <AccountCircle />
+              
               </IconButton>
               <Menu
                 id="menu-appbar"
