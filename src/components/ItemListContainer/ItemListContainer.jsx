@@ -3,7 +3,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
-export default function SimplePaper() {
+
+const ItemListContainer = ({ title }) => {
   return (
     <Box
       sx={{
@@ -17,10 +18,20 @@ export default function SimplePaper() {
       }}
     >
       <Paper elevation={0} />
-      
+
       <Paper elevation={4}>
-      <Item/>
-      </Paper>   
+        <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
+          {title}
+        </Box>
+        <Box>
+          <Item />
+        </Box>
+      </Paper>
     </Box>
-  );
+
+
+  )
 }
+export default ItemListContainer;
+
+
