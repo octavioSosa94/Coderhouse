@@ -9,21 +9,22 @@ import ItemCounter from '../ItemCounter/ItemCounter'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid'
 
-export default function ImgMediaCard() {
+
+const ImgMediaCard = ({name, description,key, stock, img}) =>{
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
-                alt="Asadito"
+                alt={name}
                 height="200"
-                image='https://images.pexels.com/photos/7780853/pexels-photo-7780853.jpeg'
+                src= {img}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    Asado
+                    {name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    El asado, barbacoa, parrilla o parrillada es una técnica de cocción mediante la cual, los alimentos (generalmente cortes de carne) son expuestos al calor de fuego o brasas para que se cocinen lentamente.
+                    {description}
                 </Typography>
                 <Grid
                     container
@@ -31,7 +32,7 @@ export default function ImgMediaCard() {
                     direction="column"
                     alignItems="center"
                     justifyContent="center"
-                ><ItemCounter stock={5} initial={1} />
+                ><ItemCounter stock={stock} initial={1} />
                 </Grid>
             </CardContent>
 
@@ -44,4 +45,8 @@ export default function ImgMediaCard() {
             </CardActions>
         </Card>
     );
+
 }
+
+
+export default ImgMediaCard
