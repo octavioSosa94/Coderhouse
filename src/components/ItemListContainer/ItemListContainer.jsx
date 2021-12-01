@@ -5,39 +5,25 @@ import Paper from '@mui/material/Paper';
 import ItemList from '../ItemListContainer/ItemList/ItemList'
 import {useState, useEffect} from 'react'
 import Grid from '@mui/material/Grid'
+import Data from '../data.json'
+import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer';
 
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const ItemListContainer = ({ title }) => {
-  const data = [
-    {
-        "name": 'Asado',
-        "description": "First element",
-        "id": "1",
-        "stock": "5",
-        "img": "https://images.pexels.com/photos/7780853/pexels-photo-7780853.jpeg"
-    },
-    { 
-        "name": 'Sushi',
-        "description": "Second element",
-        "id": "2",
-        "stock": "3",
-        "img": "https://s1.eestatic.com/2015/05/11/cocinillas/cocinillas_32506750_116175093_1706x960.jpg"
-    },
-    { 
-        "name": 'Ramen',
-        "description": "Third element",
-        "id": "3",
-        "stock": "10",
-        "img": "https://www.bing.com/th?id=AMMS_24d7d653b1793a0c5a9680086478e82d&w=459&h=459&c=7&rs=1&qlt=80&o=6&cdv=1&pid=16.1"
-    },
-    { 
-        "name": 'Pizza',
-        "description": "Fourth element",
-        "id": "4",
-        "stock": "6",
-        "img": 'https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg'
-    }
-]; 
+  const data = Data;
+
 
 const [products, setProducts] = useState([])
 useEffect(() => {
@@ -55,6 +41,7 @@ const handPromise = new Promise((resolve, reject) => {
   }, 2000)
 })
   return (
+    
     <Box
       sx={{
         display: 'flex',

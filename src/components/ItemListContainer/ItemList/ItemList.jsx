@@ -8,7 +8,7 @@ const ItemList = ({products, items}) =>{
                 <Item 
                 name = {product.name}
                 description={product.description}
-                key = {product.id}
+                key={product.id}
                 stock = {product.stock}
                 img = {product.img}
                 />
