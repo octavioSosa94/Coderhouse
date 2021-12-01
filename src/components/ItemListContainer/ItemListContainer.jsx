@@ -3,7 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ItemList from '../ItemListContainer/ItemList/ItemList'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import Data from '../data.json'
 import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer';
@@ -25,23 +25,23 @@ const ItemListContainer = ({ title }) => {
   const data = Data;
 
 
-const [products, setProducts] = useState([])
-useEffect(() => {
-  handPromise 
-  .then (res => {
-      setProducts(res)
-  })
-  .catch(err => alert('Estamos al aire', err))
-}, []);
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    handPromise
+      .then(res => {
+        setProducts(res)
+      })
+      .catch(err => alert('Estamos al aire', err))
+  }, []);
 
-const handPromise = new Promise((resolve, reject) => {
-  setTimeout( () => {
+  const handPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
       resolve(data)
       reject('Algo paso')
-  }, 2000)
-})
+    }, 2000)
+  })
   return (
-    
+
     <Box
       sx={{
         display: 'flex',
@@ -60,9 +60,9 @@ const handPromise = new Promise((resolve, reject) => {
           {title}
         </Box>
         <Box>
-        
-        
-        <ItemList products = {products}></ItemList>
+
+
+          <ItemList products={products}></ItemList>
         </Box>
       </Paper>
     </Box>

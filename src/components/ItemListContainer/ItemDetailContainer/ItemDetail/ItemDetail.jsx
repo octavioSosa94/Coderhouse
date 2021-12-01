@@ -10,8 +10,9 @@ import { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import ItemCounter from '../../ItemCounter/ItemCounter'
 
-const ItemDetail = ({product}) => {
+const ItemDetail = ({ product }) => {
 
     if (!product) {
         return null;
@@ -54,7 +55,14 @@ const ItemDetail = ({product}) => {
                     <Typography variant="body2" color="text.secondary">
                         {product.description}
                     </Typography>
-                    
+                    <Grid
+                        container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justifyContent="center"
+                    ><ItemCounter stock={product.stock} initial={1} />
+                    </Grid>
                 </CardContent>
 
             </Card>

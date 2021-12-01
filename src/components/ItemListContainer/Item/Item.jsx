@@ -61,21 +61,21 @@ const ImgMediaCard = ({ name, description, stock, img }) => {
                 <Typography variant="body2" color="text.secondary">
                     {description}
                 </Typography>
-                <Grid
+                {/* <Grid
                     container
                     spacing={0}
                     direction="column"
                     alignItems="center"
                     justifyContent="center"
                 ><ItemCounter stock={stock} initial={1} />
-                </Grid>
+                </Grid> */}
             </CardContent>
 
 
 
             <CardActions>
 
-                <Button size="small">Buy!</Button>
+                {/* <Button size="small">Buy!</Button> */}
                 <Button size="small" onClick={handleOpenLearn}>Learn More</Button>
             </CardActions>
         </Card>
