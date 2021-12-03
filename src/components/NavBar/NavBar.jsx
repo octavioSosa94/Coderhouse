@@ -13,12 +13,32 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import CartWidget from './CartWidget/CartWidget'
+import { CategoryRounded } from '@mui/icons-material';
+import axios from 'axios';
+import { useState, useEffect, Fragment } from 'react'
+import { Button } from '@mui/material';
+import { Link } from "react-router-dom"
+
+
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorMarket, setAnchorMarket] = React.useState(null);
-  
+  const [products, setProducts] = useState([{}])
+
+  const getProductsAxios = async () => {
+
+    await axios.get("../data.json").then((res) => {
+
+      setProducts(res.data)
+    })
+
+
+
+
+  }
+
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -32,17 +52,31 @@ export default function NavBar() {
   };
   const handleClose = () => {
     setAnchorEl(null);
-    
+
   };
-  
+
   const handleReturn = () => {
     setAnchorMarket(null);
   };
+
+  getProductsAxios();
+
+  var categories = [];
   
+  var catMenu = [];
+  products.forEach( prd => {
+
+    if (!categories.find( cat => cat === prd.category)) {
+
+      categories.push(prd.category);
+    }
+  });
   
+
 
 
   return (
+    
     <Box sx={{ flexGrow: 1 }}>
       <FormGroup>
         <FormControlLabel
@@ -65,38 +99,50 @@ export default function NavBar() {
             aria-label="menu"
             onClick={handleMarkt}
             sx={{ mr: 2 }
-        }
-          > 
+            }
+          >
             <MenuIcon />
             <Menu
-                id="fade-menu"
-                
-                anchorEl={anchorMarket}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorMarket)}
-                onClose={handleReturn}
-                // TransitionComponent={Fade}
-              >
-                <MenuItem onClick={handleReturn}>Comprar</MenuItem>
-                <MenuItem onClick={handleReturn}>Vender</MenuItem>
-                <MenuItem onClick={handleReturn}>Trade</MenuItem>
-              </Menu>
+              id="fade-menu"
+
+              anchorEl={anchorMarket}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorMarket)}
+              onClose={handleReturn}
+            // TransitionComponent={Fade}
+            >
+              {
+              categories.map(cat => {
+
+                return(
+                  <Link to={`/${cat}`}>
+                  <MenuItem >{cat}</MenuItem>
+                  </Link>
+                )
+              })}
+              {/* <MenuItem onClick={handleReturn}>Comprar</MenuItem>
+              <MenuItem onClick={handleReturn}>Vender</MenuItem>
+              <MenuItem onClick={handleReturn}>Trade</MenuItem> */}
+            </Menu>
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+         <Link to={`/`}>
+          <Button  variant="h6" component="div" sx={{ flexGrow: 1 }}>
             El mercadito de Octavio
-          </Typography>
-          <CartWidget/>
+          </Button>
+          </Link>
+          
+          <CartWidget />
           {auth && (
             <div>
-              
+
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -106,7 +152,7 @@ export default function NavBar() {
                 color="inherit"
               >
                 <AccountCircle />
-              
+
               </IconButton>
               <Menu
                 id="menu-appbar"

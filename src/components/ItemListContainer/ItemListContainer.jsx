@@ -7,7 +7,8 @@ import { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid'
 import Data from '../data.json'
 import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer';
-
+import { useParams } from "react-router-dom"
+import axios from 'axios'
 
 const style = {
   position: 'absolute',
@@ -23,23 +24,67 @@ const style = {
 
 const ItemListContainer = ({ title }) => {
   const data = Data;
-
-
+  const { cat } = useParams()
+  const filtered = []
   const [products, setProducts] = useState([])
-  useEffect(() => {
-    handPromise
-      .then(res => {
-        setProducts(res)
-      })
-      .catch(err => alert('Estamos al aire', err))
-  }, []);
+  // useEffect(() => {
+  //   handPromise
+  //     .then(res => {
+  //       setProducts(res)
+  //     })
+  //     .catch(err => alert('Estamos al aire', err))
+  // }, []);
 
-  const handPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(data)
-      reject('Algo paso')
-    }, 2000)
-  })
+  const getProductsAxios = async () => {
+
+    await axios.get("../data.json").then((res) => {
+
+      setProducts(res.data)
+    })
+    // const dataAxios = await axios.get("../data.json");
+    // const dataProducts = dataAxios.data;
+    // console.log(dataAxios.data)
+    // //setProduct(productInfo);
+    // setProducts(dataProducts);
+
+
+
+  }
+  useEffect(() => {
+
+    getProductsAxios()
+    // setTimeout( () => getProductsAxios(cat),2000)
+    // setTimeout( () => getProductsAxios().then((res)=>{
+    //     setProduct(products.find( (prod) => prod.id === id));
+
+
+    // }), 2000);
+
+
+  }, [cat]);
+
+  // const handPromise = new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve(data)
+  //     reject('Algo paso')
+  //   }, 2000)
+  // })
+
+  if (cat) {
+    products.forEach(prd => {
+
+      if (prd.category === cat) {
+        filtered.push(prd);
+      }
+
+    })
+
+  } else {
+
+    products.forEach(prd =>{ filtered.push(prd)})
+    
+
+  }
   return (
 
     <Box
@@ -62,7 +107,7 @@ const ItemListContainer = ({ title }) => {
         <Box>
 
 
-          <ItemList products={products}></ItemList>
+          <ItemList products={filtered}></ItemList>
         </Box>
       </Paper>
     </Box>

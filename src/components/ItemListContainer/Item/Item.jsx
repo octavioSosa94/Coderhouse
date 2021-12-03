@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid'
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 import Modal from '@mui/material/Modal';
+import { Link } from "react-router-dom"
 
 const style = {
     position: 'absolute',
@@ -23,21 +24,21 @@ const style = {
     p: 4,
 };
 
-const ImgMediaCard = ({ name, description, stock, img }) => {
+const ImgMediaCard = ({ name, description, stock, img, id }) => {
 
-    const [open, setOpen] = React.useState(false);
-    const [moreInfo,setMoreInfo] = React.useState({});
-    const handleOpenLearn = () => {
-        
-        setOpen(true);
-        setMoreInfo({ name, description, stock, img })
-    
-    }
-    const handleCloseLearn = () => setOpen(false);
+    // const [open, setOpen] = React.useState(false);
+    // const [moreInfo,setMoreInfo] = React.useState({});
+    // const handleOpenLearn = () => {
+
+    //     setOpen(true);
+    //     setMoreInfo({ name, description, stock, img,id })
+
+    // }
+    // const handleCloseLearn = () => setOpen(false);
 
     return (
         <Box>
-        <Modal
+            {/* <Modal
         open={open}
         onClose={handleCloseLearn}
         aria-labelledby="modal-modal-title"
@@ -45,40 +46,39 @@ const ImgMediaCard = ({ name, description, stock, img }) => {
       >
         <ItemDetailContainer productInfo = {moreInfo}/>
         
-      </Modal>
+      </Modal> */}
 
-        <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-                component="img"
-                alt={name}
-                height="200"
-                src={img}
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {description}
-                </Typography>
-                {/* <Grid
-                    container
-                    spacing={0}
-                    direction="column"
-                    alignItems="center"
-                    justifyContent="center"
-                ><ItemCounter stock={stock} initial={1} />
-                </Grid> */}
-            </CardContent>
+            <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                    component="img"
+                    alt={name}
+                    height="200"
+                    src={img}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        {name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+
+                        {description}
+                    </Typography>
+
+                </CardContent>
 
 
 
-            <CardActions>
+                <CardActions>
 
-                {/* <Button size="small">Buy!</Button> */}
-                <Button size="small" onClick={handleOpenLearn}>Learn More</Button>
-            </CardActions>
-        </Card>
+                    {/* <Button size="small">Buy!</Button> */}
+
+                    <Link to={`/item/${id}`}>
+                        <Button size="small" >Learn More
+                        </Button>
+                    </Link>
+
+                </CardActions>
+            </Card>
         </Box>
     );
 
