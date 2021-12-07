@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom"
 
 const ItemDetailContainer = () =>{
     const [product, setProduct] = useState({})
-    const [products, setProducts] = useState([{}])
+    
     const {id} = useParams()
     const getProductsAxios = async (id) =>{
 
@@ -17,11 +17,7 @@ const ItemDetailContainer = () =>{
 
             setProduct(res.data.find((prod) => prod.id === id))
         })
-        // const dataAxios = await axios.get("../data.json");
-        // const dataProducts = dataAxios.data;
-        // console.log(dataAxios.data)
-        // //setProduct(productInfo);
-        // setProducts(dataProducts);
+       
         
 
 
@@ -29,13 +25,8 @@ const ItemDetailContainer = () =>{
     
     useEffect(() => {
 
-        setTimeout( () => getProductsAxios(id),20)
-        // setTimeout( () => getProductsAxios().then((res)=>{
-        //     setProduct(products.find( (prod) => prod.id === id));
-
-
-        // }), 2000);
-
+        getProductsAxios(id)
+      
 
     },[id]);
     //product = data[1]
@@ -43,7 +34,7 @@ const ItemDetailContainer = () =>{
 
     return ( 
 
-            <Fragment><ItemDetail product={product}></ItemDetail></Fragment>
+            <ItemDetail product={product}></ItemDetail>
             
             
             )

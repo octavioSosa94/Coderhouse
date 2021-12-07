@@ -33,11 +33,17 @@ export default function NavBar() {
 
       setProducts(res.data)
     })
-
+    
 
 
 
   }
+  useEffect(() => {
+
+    getProductsAxios()
+    
+
+  }, []);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -59,14 +65,14 @@ export default function NavBar() {
     setAnchorMarket(null);
   };
 
-  getProductsAxios();
+  //getProductsAxios();
 
   var categories = [];
   
   var catMenu = [];
   products.forEach( prd => {
-
-    if (!categories.find( cat => cat === prd.category)) {
+    if(!(prd.category in categories)){
+    //if (!categories.find( cat => cat === prd.category)) {
 
       categories.push(prd.category);
     }
