@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import ItemCounter from '../../ItemCounter/ItemCounter'
 
 const ItemDetail = ({ product }) => {
-
+    const {cart} = useCartContext();
     if (!product) {
         return null;
     }

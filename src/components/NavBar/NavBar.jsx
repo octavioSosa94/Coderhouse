@@ -129,6 +129,7 @@ export default function NavBar() {
               categories.map(cat => {
 
                 return(
+                  
                   <Link to={`/${cat}`}>
                   <MenuItem >{cat}</MenuItem>
                   </Link>

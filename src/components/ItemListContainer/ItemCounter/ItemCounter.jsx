@@ -10,7 +10,8 @@ import Divider from '@mui/material/Divider';
 
 
 
-const ItemCounter = ({ stock, initial }) => {
+const ItemCounter = ({ stock, initial, product }) => {
+  const {cart,addItem} = useCartContext();
     const [count, setCount] = useState(initial)
     const onIncrease = () => {
         const tmpValue = count + 1
@@ -37,6 +38,7 @@ const ItemCounter = ({ stock, initial }) => {
     const onAdd = () => {
 
         const message = `Agregaste ${count} producto`;
+        addItem(product,count)
         (count===1) ? showAlert(message) : showAlert(`${message}s`)
 
     }

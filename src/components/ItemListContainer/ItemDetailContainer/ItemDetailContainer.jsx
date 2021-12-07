@@ -5,11 +5,13 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import axios from 'axios'
 import { useParams } from "react-router-dom"
+import { useCartContext } from '../../../context/Cart.Context';
 
 
 const ItemDetailContainer = () =>{
     const [product, setProduct] = useState({})
     
+
     const {id} = useParams()
     const getProductsAxios = async (id) =>{
 
