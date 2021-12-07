@@ -9,7 +9,6 @@ import { CartContext } from "./context/Cart.Context"
 import ItemDetailContainer from './components/ItemListContainer/ItemDetailContainer/ItemDetailContainer';
 import { ThemeContext } from '@mui/styled-engine';
 
-const CartContext = React.createContext();
 
 function App() {
   
