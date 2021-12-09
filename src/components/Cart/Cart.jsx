@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import ItemList from '../ItemListContainer/ItemList/ItemList'
+import CartItemList from '../Cart/CartItemList/CartItemList'
 import { useState, useEffect,useContext } from 'react'
 import { useCartContext } from "../../context/Cart.Context"
 import { useParams } from "react-router-dom"
@@ -53,7 +53,7 @@ const style = {
           <Box>
   
             
-            <ItemList products={products}></ItemList>
+            <CartItemList products={products}></CartItemList>
           </Box>
         </Paper>
       </Box>
