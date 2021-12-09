@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ItemCounter from '../../ItemCounter/ItemCounter'
-
+import { useCartContext } from "../../../../context/Cart.Context"
 const ItemDetail = ({ product }) => {
     const {cart} = useCartContext();
     if (!product) {
@@ -61,7 +61,7 @@ const ItemDetail = ({ product }) => {
                         direction="column"
                         alignItems="center"
                         justifyContent="center"
-                    ><ItemCounter stock={product.stock} initial={1} />
+                    ><ItemCounter stock={product.stock} initial={1} product={product} />
                     </Grid>
                 </CardContent>
 

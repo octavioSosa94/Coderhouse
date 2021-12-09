@@ -4,14 +4,15 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Button from '@mui/material/Button';
-
+import { useCartContext } from "../../../context/Cart.Context"
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 
 
+const ItemCounter = ({ stock, initial,product}) => {
+    
+  const {addProd} = useCartContext();
 
-const ItemCounter = ({ stock, initial, product }) => {
-  const {cart,addItem} = useCartContext();
     const [count, setCount] = useState(initial)
     const onIncrease = () => {
         const tmpValue = count + 1
@@ -38,7 +39,7 @@ const ItemCounter = ({ stock, initial, product }) => {
     const onAdd = () => {
 
         const message = `Agregaste ${count} producto`;
-        addItem(product,count)
+        //
         (count===1) ? showAlert(message) : showAlert(`${message}s`)
 
     }
@@ -82,7 +83,7 @@ const ItemCounter = ({ stock, initial, product }) => {
           mx: 0.5,
         },
       }}>
-          <Button onClick = {onAdd}>
+          <Button onClick = {addProd(product,count)}>
             Agregar al carrito
           <AddShoppingCartIcon />
           </Button>

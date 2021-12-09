@@ -5,15 +5,15 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import Grid from '@mui/material/Grid'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
-import { CartContext } from "./context/Cart.Context"
+import { CartProvider } from "./context/Cart.Context"
 import ItemDetailContainer from './components/ItemListContainer/ItemDetailContainer/ItemDetailContainer';
 import { ThemeContext } from '@mui/styled-engine';
-
+import Cart from './components/Cart/Cart'
 
 function App() {
   
   return (
-    <CartContext.Provider>
+    <CartProvider >
     <div className="App">
       <Router>
       <NavBar />
@@ -29,13 +29,14 @@ function App() {
           <Route path='/' element={<ItemListContainer title="Items disponibles para compra" />}/>
           <Route path='/:cat' element={<ItemListContainer title="Items disponibles para compra" />}/>
           <Route path="item/:id" element={<ItemDetailContainer/>} /> 
+          <Route path="cart" element={<Cart title="carrito"/>} /> 
           </Routes>
         
 
       </Grid>
       </Router>
     </div>
-    </CartContext.Provider>
+    </CartProvider>
   );
 }
 

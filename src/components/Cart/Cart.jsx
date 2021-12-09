@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ItemList from '../ItemListContainer/ItemList/ItemList'
 import { useState, useEffect } from 'react'
-
+import { useCartContext } from "../../context/Cart.Context"
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 
@@ -25,10 +25,10 @@ const style = {
     
    
     const [products, setProducts] = useState([])
-   
+    const {cart} = useCartContext();
     
   
-    
+    cart.forEach(prod => products.push(prod));
   
     
     return (
