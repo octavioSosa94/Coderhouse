@@ -27,7 +27,7 @@ const style = {
     const [products, setProducts] = useState([])
     const {cart} = useCartContext();
     
-  
+    console.log(cart)
     cart.forEach(prod => products.push(prod));
   
     
