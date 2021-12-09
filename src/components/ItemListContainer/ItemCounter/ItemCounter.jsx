@@ -38,9 +38,7 @@ const ItemCounter = ({ stock, initial,product}) => {
     }
     const onAdd = () => {
 
-        const message = `Agregaste ${count} producto`;
-        //
-        (count===1) ? showAlert(message) : showAlert(`${message}s`)
+      addProd(product,count)
 
     }
 
@@ -83,7 +81,7 @@ const ItemCounter = ({ stock, initial,product}) => {
           mx: 0.5,
         },
       }}>
-          <Button onClick = {addProd(product,count)}>
+          <Button onClick = {onAdd}>
             Agregar al carrito
           <AddShoppingCartIcon />
           </Button>

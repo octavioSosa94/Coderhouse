@@ -129,7 +129,7 @@ export default function NavBar() {
               categories.map(cat => {
 
                 return(
-                  
+
                   <Link to={`/${cat}`}>
                   <MenuItem >{cat}</MenuItem>
                   </Link>
@@ -179,6 +179,11 @@ export default function NavBar() {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
+              <Link to={`/cart`}>
+          <Button  variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Finalizar Compra
+          </Button>
+          </Link>
             </div>
           )}
         </Toolbar>

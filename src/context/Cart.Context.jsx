@@ -24,7 +24,7 @@ export const CartProvider = ({children }) => {
         //
         (quantity===1) ? alert(message) : alert(`${message}s`)
 
-        return
+        setCart(cart)
 
     }
     const value = { cart, item, id, ishere, addProd } 
