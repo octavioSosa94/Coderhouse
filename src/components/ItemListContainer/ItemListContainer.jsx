@@ -49,47 +49,77 @@ const ItemListContainer = ({ title }) => {
   if (cat) {
     products.forEach(prd => {
 
-      if (!(prd.category === cat)) {
-        products.pop(prd);
+      if ((prd.category === cat)) {
+        filtered.push(prd);
       }
 
     })
 
+    return (
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          '& > :not(style)': {
+            m: 1,
+            width: 345,
+            height: 345,
+          },
+        }}
+      >
+        <Paper elevation={0} />
+  
+        <Paper elevation={4}>
+          <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
+            {title}
+          </Box>
+          <Box>
+  
+            
+            <ItemList products={filtered}></ItemList>
+          </Box>
+        </Paper>
+      </Box>
+  
+  
+    )
+
   } else {
 
-    
+    return (
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          '& > :not(style)': {
+            m: 1,
+            width: 345,
+            height: 345,
+          },
+        }}
+      >
+        <Paper elevation={0} />
+  
+        <Paper elevation={4}>
+          <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
+            {title}
+          </Box>
+          <Box>
+  
+            
+            <ItemList products={products}></ItemList>
+          </Box>
+        </Paper>
+      </Box>
+  
+  
+    )
     
 
   }
-  return (
-
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > :not(style)': {
-          m: 1,
-          width: 345,
-          height: 345,
-        },
-      }}
-    >
-      <Paper elevation={0} />
-
-      <Paper elevation={4}>
-        <Box component="span" sx={{ color: 'primary.main', fontSize: 22 }}>
-          {title}
-        </Box>
-        <Box>
-
-          
-          <ItemList products={products}></ItemList>
-        </Box>
-      </Paper>
-    </Box>
-
-
-  )
+  
 }
 export default ItemListContainer;
 

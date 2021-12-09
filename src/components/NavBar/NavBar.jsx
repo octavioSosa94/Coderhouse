@@ -13,18 +13,18 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import CartWidget from './CartWidget/CartWidget'
-import { CategoryRounded } from '@mui/icons-material';
+import { BrowserRouter as Router} from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect, Fragment } from 'react'
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom"
-
-
+import Redirect from 'react'
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorMarket, setAnchorMarket] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
   const [products, setProducts] = useState([{}])
 
   const getProductsAxios = async () => {
@@ -33,7 +33,7 @@ export default function NavBar() {
 
       setProducts(res.data)
     })
-    
+
 
 
 
@@ -41,9 +41,21 @@ export default function NavBar() {
   useEffect(() => {
 
     getProductsAxios()
-    
+
 
   }, []);
+
+  const handleReturn = () => {
+    setAnchorMarket(null);
+    setAnchorMarket(null);
+    setAnchorMarket(null);
+    
+    
+    console.log(anchorMarket)
+    
+    //return 
+
+  };
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -51,38 +63,39 @@ export default function NavBar() {
 
   const handleMarkt = (evento) => {
     setAnchorMarket(evento.currentTarget);
+    console.log(anchorMarket)
   };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log(anchorEl)
   };
   const handleClose = () => {
     setAnchorEl(null);
+    console.log(anchorEl)
+
 
   };
 
-  const handleReturn = () => {
-    setAnchorMarket(null);
-  };
 
   //getProductsAxios();
 
   var categories = [];
-  
+
   var catMenu = [];
-  products.forEach( prd => {
-    if(!(prd.category in categories)){
-    //if (!categories.find( cat => cat === prd.category)) {
+  products.forEach(prd => {
+    if (!(prd.category in categories)) {
+      //if (!categories.find( cat => cat === prd.category)) {
 
       categories.push(prd.category);
     }
   });
-  
+
 
 
 
   return (
-    
+
     <Box sx={{ flexGrow: 1 }}>
       <FormGroup>
         <FormControlLabel
@@ -104,48 +117,52 @@ export default function NavBar() {
             color="inherit"
             aria-label="menu"
             onClick={handleMarkt}
+            onClose={handleReturn}
             sx={{ mr: 2 }
             }
           >
-            <MenuIcon />
+            <MenuIcon  />
+
             <Menu
-              id="fade-menu"
+              id="category-menu"
 
               anchorEl={anchorMarket}
               anchorOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
               }}
               open={Boolean(anchorMarket)}
               onClose={handleReturn}
+              
+              onClickAway={handleReturn}
             // TransitionComponent={Fade}
             >
               {
-              categories.map(cat => {
+                categories.map(cat => {
 
-                return(
+                  return (
 
-                  <Link to={`/${cat}`}>
-                  <MenuItem >{cat}</MenuItem>
-                  </Link>
-                )
-              })}
-              {/* <MenuItem onClick={handleReturn}>Comprar</MenuItem>
-              <MenuItem onClick={handleReturn}>Vender</MenuItem>
-              <MenuItem onClick={handleReturn}>Trade</MenuItem> */}
+                    <Link to={`/${cat}`}>
+                    <MenuItem onClick={handleReturn}>{cat}</MenuItem>
+                    </Link>
+                  )
+                })}
+                <MenuItem onClick={()=>{setAnchorMarket(null);}}>Volver</MenuItem>
+
             </Menu>
+
           </IconButton>
-         <Link to={`/`}>
-          <Button  variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            El mercadito de Octavio
-          </Button>
+          <Link to={`/`}>
+            <Button variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              El mercadito de Octavio
+            </Button>
           </Link>
-          
+
           <CartWidget />
           {auth && (
             <div>
@@ -180,10 +197,10 @@ export default function NavBar() {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
               <Link to={`/cart`}>
-          <Button  variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Finalizar Compra
-          </Button>
-          </Link>
+                <Button variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  Finalizar Compra
+                </Button>
+              </Link>
             </div>
           )}
         </Toolbar>
