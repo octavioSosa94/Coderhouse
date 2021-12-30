@@ -1,34 +1,111 @@
- [
-    {
-        "name": "Asado",
-        "description": "First element",
-        "id": "1",
-        "stock": "5",
-        "img": "https://images.pexels.com/photos/7780853/pexels-photo-7780853.jpeg",
-        "category":"Carne"
+[
+    
+    { 
+        "name": "Fideos de arroz con tofu",
+        "description": "Fideos de arroz con salteado de tofu y pimiento",
+        "id": "5",
+        "stock": 7,
+        "img": "https://i.blogs.es/3c3171/fideos-tofu/1366_2000.jpg",
+        "category":"Vegan",
+        "price": "750"
     },
     { 
-        "name": "Sushi",
-        "description": "Second element",
-        "id": "2",
-        "stock": "3",
-        "img": "https://s1.eestatic.com/2015/05/11/cocinillas/cocinillas_32506750_116175093_1706x960.jpg",
-        "category":"Pescado"
+        "name": "Ensalada de quinoa",
+        "description": "Ensalada de quinoa, calabaza asada y granada",
+        "id": "6",
+        "stock": 6,
+        "img": "https://i.blogs.es/0f37ec/ensalada-quinoa-calabaza/1366_2000.jpg",
+        "category":"Vegan",
+        "price":"650"
     },
     { 
-        "name": "Ramen",
-        "description": "Third element",
-        "id": "3",
-        "stock": "10",
-        "img": "https://www.bing.com/th?id=AMMS_24d7d653b1793a0c5a9680086478e82d&w=459&h=459&c=7&rs=1&qlt=80&o=6&cdv=1&pid=16.1",
-        "category":"Cerdo"
+        "name": "Revuelto vegano",
+        "description": "Revuelto vegano de tofu",
+        "id": "7",
+        "stock": 7,
+        "img": "https://i.blogs.es/ab93ec/revuelto-vegano/1366_2000.jpg",
+        "category":"Vegan",
+        "price": "550"
     },
     { 
-        "name": "Pizza",
-        "description": "Fourth element",
-        "id": "4",
-        "stock": "6",
-        "img": "https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg",
-        "category":"Pizza"
+        "name": "Tortilla vegana",
+        "description": "Tortilla jugosa vegana de calabacín",
+        "id": "8",
+        "stock": 6,
+        "img": "https://i.blogs.es/52c1fe/tortilla-jugosa/1366_2000.jpg",
+        "category":"Vegan",
+        "price":"800"
+    },
+    { 
+        "name": "Tacos Mexicanos",
+        "description": "Los tacos mexicanos con una receta muy popular de este país americano. En esta ocasión vamos a utilizar carne picada de ternera para preparar este delicioso plato.",
+        "id": "9",
+        "stock": 7,
+        "img": "https://www.cocinacaserayfacil.net/wp-content/uploads/2016/05/tacos-mexicanos.jpg",
+        "category":"Carne",
+        "price": "700"
+    },
+    { 
+        "name": "Albondigas en salsa",
+        "description": "Las albóndigas caseras en salsa de tomate es un plato casero tradicional, de los de toda la vida. ",
+        "id": "10",
+        "stock": 6,
+        "img": "https://www.cocinacaserayfacil.net/wp-content/uploads/2016/06/albondigas-caseras-en-salsa-de-tomate.jpg",
+        "category":"Carne",
+        "price":"950"
+    },
+    { 
+        "name": "Milanesa con fideos",
+        "description": "es un filete empanado y relleno de jamón o de cecina, y de algún queso típico asturiano, como el cabrales. Es muy parecido a un escalope pero en esta ocasión se rellena con estos ingredientes.",
+        "id": "11",
+        "stock": 7,
+        "img": "https://www.cocinacaserayfacil.net/wp-content/uploads/2016/08/Cachopo-de-asturias.jpg",
+        "category":"Carne",
+        "price": "550"
+    },
+    { 
+        "name": "Lomo al horno",
+        "description": "El lomo al horno es una receta muy sencilla de preparar esta carne de cerdo. Obtendremos una carne muy melosa y deliciosa que conserva los jugos en su interior.",
+        "id": "12",
+        "stock": 6,
+        "img": "https://www.cocinacaserayfacil.net/wp-content/uploads/2015/04/Lomo-al-horno-cortado.jpg",
+        "category":"Cerdo",
+        "price":"1100"
+    },
+    { 
+        "name": "Hamburguesas",
+        "description": "La hamburguesa casera es probablemente una de las recetas más populares mundo. Preparar una hamburguesa es muy sencillo ya que se trata de un filete de carne picada al que le puedes añadir los ingredientes que prefieras para hacerla mas deliciosa.",
+        "id": "13",
+        "stock": 7,
+        "img": "https://i.blogs.es/ab93ec/revuelto-vegano/1366_2000.jpg",
+        "category":"Cerdo",
+        "price": "900"
+    },
+    { 
+        "name": "Pizza mexicana de carne",
+        "description": "Es una Pizza mexicana de carne elaborada con una base de tomate y queso cubierta con carne picada, cebolla y rodajas de aguacate. El toque picante adecuado lo decides tú añadiendo más o menos Tabasco o chiles jalapeños. ",
+        "id": "14",
+        "stock": 6,
+        "img": "https://i.blogs.es/4f01d2/650_1200-1-/1366_2000.jpg",
+        "category":"Pizza",
+        "price":"800"
+    },
+    { 
+        "name": "Pizza de pera, jamón y gorgonzola",
+        "description": "Esta Pizza de pera, jamón y gorgonzola es una de mis pizzas favoritas ya que el toque dulce de la pera encaja muy bien con el salado del jamón, en contraste con el sabor especial del queso gorgonzola. Me estoy relamiendo al recordarla. ",
+        "id": "15",
+        "stock": 7,
+        "img": "https://i.blogs.es/ce69bc/650_1200-2-/1366_2000.jpg",
+        "category":"Pizza",
+        "price": "850"
+    },
+    { 
+        "name": "Pizza de colores",
+        "description": "Esta Pizza de colores la descubrí en una aplicación del teléfono y estoy feliz de ese descubrimiento porque siendo muy sencilla es una de las pizzas que más éxito tiene en casa cada vez que la preparo. A mis sobrinas les entusiasma. ",
+        "id": "16",
+        "stock": 6,
+        "img": "https://i.blogs.es/f144c1/650_1200-5-/1366_2000.jpg",
+        "category":"Pizza",
+        "price":"650"
     }
 ] 

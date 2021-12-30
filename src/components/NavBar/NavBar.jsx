@@ -11,48 +11,55 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import Fade from '@mui/material/Fade';
+
 import CartWidget from './CartWidget/CartWidget'
-import { BrowserRouter as Router} from "react-router-dom";
-import axios from 'axios';
+
+
 import { useState, useEffect, Fragment } from 'react'
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom"
-import Redirect from 'react'
 
-export default function NavBar() {
+import { useCartContext } from "../../context/Cart.Context"
+import { getFirestore, collection, getDocs } from "firebase/firestore"
+export default function NavBar({ product }) {
   const [auth, setAuth] = React.useState(true);
   const [anchorMarket, setAnchorMarket] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { cart } = useCartContext()
+  const [category, setCategory] = useState([])
+  const [products, setProducts] = useState([cart])
+  //const [categories, setCategories] = useState()
+  let count = cart.length;
 
-  const [products, setProducts] = useState([{}])
-
-  const getProductsAxios = async () => {
-
-    await axios.get("../data.json").then((res) => {
-
-      setProducts(res.data)
-    })
-
-
-
-
-  }
   useEffect(() => {
 
-    getProductsAxios()
+    const db = getFirestore();
+    const itemCollection = collection(db, "items")
+    getDocs(itemCollection).then((snapshot) => {
+
+      if (snapshot.size === 0) {
+        console.log("no Results");
+      }
+      setCategory(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+    })
 
 
   }, []);
 
+
+
+  useEffect(() => {
+    setProducts(cart);
+
+  }, [cart]);
+
   const handleReturn = () => {
     setAnchorMarket(null);
-    setAnchorMarket(null);
-    setAnchorMarket(null);
-    
-    
+
+
+
     console.log(anchorMarket)
-    
+
     //return 
 
   };
@@ -78,21 +85,76 @@ export default function NavBar() {
   };
 
 
-  //getProductsAxios();
 
-  var categories = [];
+
+
 
   var catMenu = [];
-  products.forEach(prd => {
-    if (!(prd.category in categories)) {
+  var categories = [];
+  category.forEach(prd => {
+    if (!(categories.includes(prd.category))) {
       //if (!categories.find( cat => cat === prd.category)) {
 
       categories.push(prd.category);
     }
   });
 
+  const renderMenu = (
+    <Menu
+      id="category-menu"
+
+      anchorEl={anchorMarket}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'left',
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'left',
+      }}
+      open={Boolean(anchorMarket)}
+      onClose={handleReturn}
+
+      onClickAway={handleReturn}
+    // TransitionComponent={Fade}
+    >
+      {
+        categories.map(cat => {
+
+          return (
 
 
+            <MenuItem onClick={handleReturn}>
+              <Button component={Link} to={`/${cat}`} ><p>{cat}</p></Button>
+            </MenuItem>
+          )
+        })}
+      <MenuItem onClick={() => { setAnchorMarket(null); }}>Volver</MenuItem>
+
+    </Menu>
+  )
+  const renderMobileMenu = (
+    <Menu
+      id="menu-appbar"
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+    >
+      <MenuItem onClick={handleClose}>Profile</MenuItem>
+      <MenuItem onClick={handleClose}>My account</MenuItem>
+    </Menu>
+
+  )
 
   return (
 
@@ -121,49 +183,22 @@ export default function NavBar() {
             sx={{ mr: 2 }
             }
           >
-            <MenuIcon  />
+            <MenuIcon />
 
-            <Menu
-              id="category-menu"
-
-              anchorEl={anchorMarket}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorMarket)}
-              onClose={handleReturn}
-              
-              onClickAway={handleReturn}
-            // TransitionComponent={Fade}
-            >
-              {
-                categories.map(cat => {
-
-                  return (
-
-                    <Link to={`/${cat}`}>
-                    <MenuItem onClick={handleReturn}>{cat}</MenuItem>
-                    </Link>
-                  )
-                })}
-                <MenuItem onClick={()=>{setAnchorMarket(null);}}>Volver</MenuItem>
-
-            </Menu>
 
           </IconButton>
-          <Link to={`/`}>
-            <Button variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <Button component={Link} to={"/"} size='large' color='inherit' >
               El mercadito de Octavio
             </Button>
-          </Link>
+          </Typography>
 
-          <CartWidget />
+
+          <CartWidget cart={cart.length} />
           {auth && (
             <div>
 
@@ -178,33 +213,18 @@ export default function NavBar() {
                 <AccountCircle />
 
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-              <Link to={`/cart`}>
-                <Button variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  Finalizar Compra
-                </Button>
-              </Link>
+
+
+              <Button component={Link} to={"/cart"} size='large' color='inherit' sx={{ flexGrow: 1 }}>
+                Finalizar Compra
+              </Button>
+
             </div>
           )}
         </Toolbar>
       </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
     </Box>
   );
 }

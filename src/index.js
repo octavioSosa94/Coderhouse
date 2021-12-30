@@ -3,6 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { initializeApp } from '@firebase/app';
+import { StrictMode } from 'react';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPjwA60Iuj2zOZns-WoIqti5TyzR077lo",
+
+  authDomain: "codercommerce-sosa.firebaseapp.com",
+
+  projectId: "codercommerce-sosa",
+
+  storageBucket: "codercommerce-sosa.appspot.com",
+
+  messagingSenderId: "250320686963",
+
+  appId: "1:250320686963:web:c1543618fe951b56fc7f06"
+
+};
+
+initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>

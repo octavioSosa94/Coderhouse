@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import { useCartContext } from "../../../context/Cart.Context"
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
+import { render } from "@testing-library/react";
+import NavBar from "../../NavBar/NavBar";
 
 
 const ItemCounter = ({ stock, initial,product}) => {
@@ -31,15 +33,11 @@ const ItemCounter = ({ stock, initial,product}) => {
 
         }
     }
-    const showAlert = (message) => {
-        alert (message);
-
-
-    }
+    
     const onAdd = () => {
 
       addProd(product,count)
-
+      render(NavBar)
     }
 
     return (

@@ -1,20 +1,28 @@
 import Item from '../Item/Item';
-const ItemList = ({products, items}) =>{
-    console.log("products: ", products) 
+import { ImageListItem } from '@mui/material';
+import { Box } from '@mui/system';
+import Grid from '@mui/material/Grid'
+const ItemList = ({ products, items, isCart }) => {
+    
     return (
-        <div>
-            {products.map(product => {
-                return(
-                <Item 
-                name = {product.name}
-                description={product.description}
-                id={product.id}
-                stock = {product.stock}
-                img = {product.img}
-                />
-                );
-            })}
-        </div>
+        <Box>
+            <Grid container
+                rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                {products.map(product => {
+                    return (
+
+                        <Grid item key={product.id}>{/* 2,4,3 */}
+                            <Item
+                                product= {product} isCart={isCart}
+                            />
+                        </Grid>
+
+
+                    );
+                })}
+            </Grid>
+        </Box>
+
 
     );
 }

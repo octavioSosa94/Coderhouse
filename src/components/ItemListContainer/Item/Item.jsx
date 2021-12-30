@@ -5,81 +5,54 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import ItemCounter from '../ItemCounter/ItemCounter'
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid'
-import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
-import Modal from '@mui/material/Modal';
+import { useCartContext } from "../../../context/Cart.Context"
 import { Link } from "react-router-dom"
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
 
-const ImgMediaCard = ({ name, description, stock, img, id }) => {
 
-    // const [open, setOpen] = React.useState(false);
-    // const [moreInfo,setMoreInfo] = React.useState({});
-    // const handleOpenLearn = () => {
-
-    //     setOpen(true);
-    //     setMoreInfo({ name, description, stock, img,id })
-
-    // }
-    // const handleCloseLearn = () => setOpen(false);
-
+const ImgMediaCard = ({ product, isCart, finalPrice, qty }) => {
+    const { removeItem } = useCartContext();
+    const onDelClick = () => {
+        removeItem(product, qty)
+    }
     return (
-        <Box>
-            {/* <Modal
-        open={open}
-        onClose={handleCloseLearn}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <ItemDetailContainer productInfo = {moreInfo}/>
+
+
         
-      </Modal> */}
-
-            <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                    component="img"
-                    alt={name}
-                    height="200"
-                    src={img}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-
-                        {description}
-                    </Typography>
-
-                </CardContent>
+        <Card sx={{  minWidth: 350,  maxWidth:350}}>
+            <CardMedia
+                component="img"
+                alt={product.name}
+                height="200"
+                width="350"
+                src={product.img}
+                
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {product.name}
+                    {!isCart && (<h3><b>${product.price}</b></h3>)}
+                    {isCart && (<h3><b>${finalPrice}</b></h3>)}
+                    {isCart && (<h3><b>Amount: {qty}</b></h3>)}
+                </Typography>
 
 
+            </CardContent>
 
-                <CardActions>
 
-                    {/* <Button size="small">Buy!</Button> */}
 
-                    <Link to={`/item/${id}`}>
-                        <Button size="small" >Learn More
-                        </Button>
-                    </Link>
+            <CardActions>
 
-                </CardActions>
-            </Card>
-        </Box>
+                
+
+                {isCart && (<Button onClick={onDelClick}><h3><b>Remove</b></h3></Button>)}
+                {!isCart && (<Button component={Link} to={`/item/${product.id}`}> Learn More</Button>)}
+
+
+            </CardActions>
+        </Card>
+        
+
     );
 
 }

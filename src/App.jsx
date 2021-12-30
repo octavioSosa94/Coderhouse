@@ -9,10 +9,13 @@ import { CartProvider } from "./context/Cart.Context"
 import ItemDetailContainer from './components/ItemListContainer/ItemDetailContainer/ItemDetailContainer';
 import { ThemeContext } from '@mui/styled-engine';
 import Cart from './components/Cart/Cart'
+import Checkout from './components/Payment/Checkout'
+import Init from './components/Init'
 
 function App() {
   
   return (
+    
     <CartProvider >
     <div className="App">
       <Router>
@@ -30,6 +33,8 @@ function App() {
           <Route path='/:cat' element={<ItemListContainer title="Items disponibles para compra" />}/>
           <Route path="item/:id" element={<ItemDetailContainer/>} /> 
           <Route path="/cart" element={<Cart title="carrito"/>} /> 
+          <Route path="/checkout" element={<Checkout/>}/>
+          <Route path="/init" element={<Init/>}/>
           </Routes>
         
 
@@ -37,6 +42,7 @@ function App() {
       </Router>
     </div>
     </CartProvider>
+    
   );
 }
 
